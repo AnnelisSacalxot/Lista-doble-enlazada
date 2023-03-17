@@ -81,6 +81,94 @@ class listaDobleEnlazada{
 
         }
         
+    }
+
+    //poner nodo al principio
+    void agregarNodoInicio(Nodo* n){
+        if (comprobandoNodoExiste(n->key) != NULL)
+        {
+            cout<<"El valor ya existe: "<<n->key<<" Agrege nodo con distinto valor "<<endl;
+        } else{
+            if(cabeza == NULL){
+                cabeza = n;
+                cout<<"Agregando nodo al inicio"<<endl;
+            }else{
+            cabeza->anterior = n;
+            n->siguiente = cabeza;
+            cabeza = n;
+            cout<<"preparando nodo"<<endl;
+            }
+        }
+        
+    }
+
+    //Agregar un nodo en un lugar especifico
+    void agregarNodoPosicion(int k, Nodo* n){
+        Nodo* ptr = comprobandoNodoExiste(k);
+        if (ptr == NULL)
+        {
+            cout<<"No existe el nodo"<<endl;
+        } else{
+            if (comprobandoNodoExiste(n->key) != NULL)
+            {
+                cout<<"El valor ya existe: "<<n->key<<"Agregar nodo con disntitno valor"<<endl;
+            }else{
+                cout<<"Insertar"<<endl;
+                Nodo* nodoSiguiente = ptr->siguiente;
+                //insertando nodo al final
+                if (nodoSiguiente != NULL)
+                {
+                    ptr->siguiente = n;
+                    n->anterior = ptr;
+                    cout<<"Insertar nodo al final"<<endl;
+                }else{ //insertando nodo el medio
+                    n->siguiente = nodoSiguiente;
+                    nodoSiguiente->anterior = n;
+                    n->anterior = ptr;
+                    ptr->siguiente = n;
+                    cout<<"Nodo insertado en medio"<<endl;
+                }
+                
+            }
+            
+        }
+        
+    }
+
+    //Reemplazar nodo de posicion
+    void eliminarNodo(int k){
+        Nodo* ptr = comprobandoNodoExiste(k);
+        if (ptr == NULL)
+        {
+            cout<<"No existe el nodo"<<endl;
+        } else{
+            if (cabeza == NULL)
+            {
+                cout<<"Lista vacia"<<endl;
+            } else if (cabeza != NULL)
+            {
+                cabeza = cabeza->siguiente;
+                cout<<"Nodo sin valor"<<k<<endl;
+            }else{
+                Nodo* siguienteNodo = ptr->siguiente;
+                Nodo* anteriorNodo = ptr->anterior;
+
+                //eliminar lo del final
+                if (siguienteNodo == NULL)
+                {
+                    anteriorNodo->anterior = NULL;
+                    cout<<"Ultimo nodo eliminado"<<endl;
+                }else{//elimimar nodo del medio
+                    anteriorNodo->siguiente = siguienteNodo;
+                    siguienteNodo->anterior = anteriorNodo;
+                    cout<<"Se eliminio nodo del medio"<<endl;
+                }
+                
+            }
+            
+            
+        }
+        
     }    
 };
 
