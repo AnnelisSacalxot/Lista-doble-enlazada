@@ -53,8 +53,35 @@ class listaDobleEnlazada{
                ptr = ptr->siguiente;
                
             }
-            return temporal;
+        return temporal;
         }
+
+        //agregar nuevo nodo a la lista
+    void agregarNodo(Nodo* n){
+        if (comprobandoNodoExiste(n->key) != NULL)
+        {
+            cout<<"El nodo ya existe : "<<n->key<<". Agrege un valor distinto"<<endl;
+
+        } else{
+            if (cabeza == NULL)
+            {
+                cabeza = n;
+                cout<<"El nodo se agrego correctamente, ahora es la cabeza"<<endl;
+            }else{
+                Nodo* ptr = cabeza;
+                //si no se ha terminado los nodos
+                while (ptr->siguiente != NULL)
+                {
+                    ptr = ptr->siguiente;
+                }
+                ptr->siguiente = n;
+                n->anterior = ptr;
+                cout<<"Nodo agregado"<<endl;
+            }
+
+        }
+        
+    }    
 };
 
 int main(){
