@@ -169,7 +169,40 @@ class listaDobleEnlazada{
             
         }
         
-    }    
+    }   
+
+    //actualizar nodo
+    void actualizarNodo(int k, int d){
+        Nodo* ptr = comprobandoNodoExiste(k);
+        if (ptr != NULL)
+        {
+            ptr->dato = d;
+            cout<<"Se actualizo el valor con exito"<<endl;
+        }else{
+            cout<<"El nodo no existe, por lo que no se puede cambiar valor"<<k<<endl;
+        }
+        
+    } 
+
+    //imprimir
+
+    void imprimirLista(){
+        if (cabeza == NULL)
+        {
+            cout<<"El nodo y valor no existe"<<endl;
+        }else{
+            cout<<"Lista doblemente enlazada: "<<endl;
+            Nodo* temporal = cabeza;
+
+            while (temporal != NULL)
+            {
+                cout<<"("<<temporal->key<<","<<temporal->dato<<") <-->"<<endl;
+                temporal = temporal->siguiente;
+            }
+            
+        }
+        
+    }
 };
 
 int main(){
